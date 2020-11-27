@@ -18,6 +18,7 @@ class CriaCategories extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description', 255);
+            $table->string('name', 255);
             $table->boolean('active')->default(false);
             $table->timestamps();
         });
