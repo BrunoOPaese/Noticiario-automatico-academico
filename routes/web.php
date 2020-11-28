@@ -20,8 +20,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'categories'], function() {
     Route::get('', 'CategoryController@index')->name('categories.index');
     Route::get('novo', 'CategoryController@create')->name('categories.create');
+    Route::post('novo', 'CategoryController@store')->name('categories.save');
+    Route::put('{id}', 'CategoryController@update')->name('categories.update');
     Route::get('{id}', 'CategoryController@edit')->name('categories.edit');
-    Route::post('{id}', 'CategoryController@destroy')->name('categories.destroy');
+    Route::delete('{id}', 'CategoryController@destroy')->name('categories.destroy');
     
 });
 
