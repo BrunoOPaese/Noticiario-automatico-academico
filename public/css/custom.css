@@ -1,0 +1,12 @@
+:root {
+    --fullWidth: 100vw;
+}
+
+table {
+    max-width: calc(var(--fullWidth)*0.9) !important;
+    overflow: hidden;
+}
+
+table td {
+    overflow: hidden;
+}

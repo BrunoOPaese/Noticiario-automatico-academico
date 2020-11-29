@@ -15,7 +15,7 @@ class CriaPosts extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('post_date');
+            $table->timestamp('post_date')->current();
             $table->string('sumary', 255);
             $table->string('title', 255);
             $table->text('text');

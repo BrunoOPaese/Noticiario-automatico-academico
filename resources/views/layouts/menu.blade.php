@@ -10,7 +10,7 @@
         <a class="nav-link" href="{{ route('categories.index') }}">Categorias</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Questões</a>
+        <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="">Usuários</a>

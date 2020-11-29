@@ -4,41 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Category;
+use App\Post;
 
-class CategoryController extends Controller
+class PostController extends Controller
 {
     public function index()
     {
-        $category = Category::all();
-        return view('categories', [
-            'categories' => $category
+        $post = Post::all();
+        return view('posts', [
+            'posts' => $post
         ]); 
     }
     public function create()
     {
-        $category = new Category();
-        return view('category', [
-            'category' => $category
+        $post = new Post();
+        return view('post', [
+            'post' => $post
         ]);
     }
     public function destroy(Request $request, $id)
     {
         print_r($id);
-        $category = Category::find($id);
-        $category->delete();
-        return redirect()->route('categories.index');
+        $post = post::find($id);
+        $post->delete();
+        return redirect()->route('posts.index');
     }
     public function edit($id)
     {
-        $category = Category::find($id);
+        $post = post::find($id);
 
-        return view('category', [
-            'category' => $category
+        return view('post', [
+            'post' => $post
         ]);
     }
     public function store(Request $request){
-        $category = new Category();
+        $post = new post();
 
         $rules = [
             'name' => 'required|min:3|max:255',
@@ -59,15 +59,15 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $category->name = $request->input('name');
-        $category->active = $request->input('active') == 'on' ? true : false;
-        $category->description = $request->input('description');
+        $post->name = $request->input('name');
+        $post->active = $request->input('active') == 'on' ? true : false;
+        $post->description = $request->input('description');
 
-        $category->save();
+        $post->save();
         return redirect()->route('categories.index');
     }
     public function update(Request $request, $id){
-        $category = Category::find($id);
+        $post = post::find($id);
 
         $rules = [
             'name' => 'required|min:3|max:255',
@@ -88,12 +88,12 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $category->name = $request->input('name');
-        $category->active = $request->input('active') == 'on' ? true : false;
-        $category->active = $request->input('active') == 'on' ? true : false;
-        $category->description = $request->input('description');
+        $post->name = $request->input('name');
+        $post->active = $request->input('active') == 'on' ? true : false;
+        $post->active = $request->input('active') == 'on' ? true : false;
+        $post->description = $request->input('description');
 
-        $category->save();
+        $post->save();
         return redirect()->route('categories.index');
     }
 }
