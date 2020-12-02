@@ -21,6 +21,14 @@
                         <input type="text" class="form-control" id="sumary" name="sumary" value="{{ $post->sumary }}">
                     </div>
                     <div class="form-group">
+                        <label for="category_id">Categoria</label>
+                        <select name="category_id" id="category_id" class="form-control"> 
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <textarea name="text" id="text" cols="" rows="10" class="form-control">{{ $post->text }}</textarea>
                     </div>
                     <div class="form-group">

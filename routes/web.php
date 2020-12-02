@@ -13,12 +13,10 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('logout', 'HomeController@logout')->name('logout');
 
 Route::group(['prefix' => 'categories'], function() {
-    Route::get('', 'CategoryController@index')->name('categories.index');
+    Route::get('', 'CategoryController@index')->name('categories.index')->middleware('auth');
     Route::get('novo', 'CategoryController@create')->name('categories.create');
     Route::post('novo', 'CategoryController@store')->name('categories.save');
     Route::put('{id}', 'CategoryController@update')->name('categories.update');
@@ -35,6 +33,14 @@ Route::group(['prefix' => 'posts'], function() {
     Route::put('{id}', 'PostController@update')->name('posts.update');
 });
 
+Route::group(['prefix' => 'users'], function () {
+    Route::get('', 'UserController@index')->name('users.index')->middleware('auth');
+    Route::get('novo', 'UserController@create')->name('users.create')->middleware('auth');
+    Route::post('', 'UserController@store')->name('users.store')->middleware('auth');
+    Route::get('{id}', 'UserController@edit')->name('users.edit')->middleware('auth');
+    Route::put('{id}', 'UserController@update')->name('users.update')->middleware('auth');
+    Route::delete('{id}', 'UserController@destroy')->name('users.destroy')->middleware('auth');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

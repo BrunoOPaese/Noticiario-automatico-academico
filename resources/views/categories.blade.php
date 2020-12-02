@@ -13,7 +13,8 @@
         <div class="col-12 mt-3">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
-                <table class="col-12 table-dark table">
+                <table class="col-12 table table">
+                    <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>
@@ -21,6 +22,8 @@
                         <th>Visibilidade</th>
                         <th>Ações</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     @foreach($categories as $category)
                         <tr>
                             <td>{{$category->id}}</td>
@@ -45,7 +48,9 @@
                             </td>
                         </tr>
                     @endforeach
+                    </tbody>
                 </table>
         </div>
     </div>
 </div>
+<script src="{{asset('js/custom.js')}}"></script>

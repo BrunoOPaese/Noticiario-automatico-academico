@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Post;
@@ -11,47 +12,54 @@ class PostController extends Controller
     public function index()
     {
         $post = Post::all();
+
         return view('posts', [
             'posts' => $post
         ]); 
     }
     public function create()
     {
+        $categories = Category::all();
         $post = new Post();
         return view('post', [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ]);
     }
     public function destroy(Request $request, $id)
     {
         print_r($id);
-        $post = post::find($id);
+        $post = Post::find($id);
         $post->delete();
         return redirect()->route('posts.index');
     }
     public function edit($id)
     {
-        $post = post::find($id);
-
+        $post = Post::find($id);
+        $categories = Category::all();
         return view('post', [
-            'post' => $post
+            'post' => $post,
+            'categories' => $categories
         ]);
     }
     public function store(Request $request){
         $post = new post();
 
         $rules = [
-            'name' => 'required|min:3|max:255',
-            'description' => 'required|min:3|max:255'
+            'title' => 'required|min:3|max:255',
+            'sumary' => 'required|min:3|max:255',
+            'text' => 'required|min:3'
         ];
 
         $messages = [
-            'name.required' => 'O nome deve estar preenchido',
-            'name.min' => 'O nome deve ter no mínimo 3 caracteres',
-            'name.max' => 'O nome deve ter no máximo 255 caracteres',
-            'description.required' => 'A descrição deve estar preenchido',
-            'description.min' => 'A descrição deve ter no mínimo 3 caracteres',
-            'description.max' => 'A descrição deve ter no máximo 255 caracteres',
+            'title.required' => 'O título deve estar preenchido',
+            'title.min' => 'O título deve ter no mínimo 3 caracteres',
+            'title.max' => 'O título deve ter no máximo 255 caracteres',
+            'sumary.required' => 'O resumo deve estar preenchido',
+            'sumary.min' => 'O resumo deve ter no mínimo 3 caracteres',
+            'sumary.max' => 'O resumo deve ter no máximo 255 caracteres',
+            'text.required' => 'O texto deve estar preenchido',
+            'text.min' => 'O texto deve ter no mínimo 3 caracteres',
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -59,28 +67,34 @@ class PostController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $post->name = $request->input('name');
+        $post->title = $request->input('title');
+        $post->text = $request->input('text');
+        $post->category_id = $request->input('category_id');
+        $post->sumary = $request->input('sumary');
         $post->active = $request->input('active') == 'on' ? true : false;
-        $post->description = $request->input('description');
+        
 
         $post->save();
-        return redirect()->route('categories.index');
+        return redirect()->route('posts.index');
     }
     public function update(Request $request, $id){
-        $post = post::find($id);
+        $post = Post::find($id);
 
         $rules = [
-            'name' => 'required|min:3|max:255',
-            'description' => 'required|min:3|max:255'
+            'title' => 'required|min:3|max:255',
+            'sumary' => 'required|min:3|max:255',
+            'text' => 'required|min:3'
         ];
 
         $messages = [
-            'name.required' => 'O nome deve estar preenchido',
-            'name.min' => 'O nome deve ter no mínimo 3 caracteres',
-            'name.max' => 'O nome deve ter no máximo 255 caracteres',
-            'description.required' => 'A descrição deve estar preenchido',
-            'description.min' => 'A descrição deve ter no mínimo 3 caracteres',
-            'description.max' => 'A descrição deve ter no máximo 255 caracteres',
+            'title.required' => 'O título deve estar preenchido',
+            'title.min' => 'O título deve ter no mínimo 3 caracteres',
+            'title.max' => 'O título deve ter no máximo 255 caracteres',
+            'sumary.required' => 'O resumo deve estar preenchido',
+            'sumary.min' => 'O resumo deve ter no mínimo 3 caracteres',
+            'sumary.max' => 'O resumo deve ter no máximo 255 caracteres',
+            'text.required' => 'O texto deve estar preenchido',
+            'text.min' => 'O texto deve ter no mínimo 3 caracteres',
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -88,12 +102,14 @@ class PostController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        $post->name = $request->input('name');
+        $post->title = $request->input('title');
+        $post->text = $request->input('text');
+        $post->category_id = $request->input('category_id');
+        $post->sumary = $request->input('sumary');
         $post->active = $request->input('active') == 'on' ? true : false;
-        $post->active = $request->input('active') == 'on' ? true : false;
-        $post->description = $request->input('description');
+        
 
         $post->save();
-        return redirect()->route('categories.index');
+        return redirect()->route('posts.index');
     }
 }

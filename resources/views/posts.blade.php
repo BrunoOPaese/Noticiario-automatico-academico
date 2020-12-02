@@ -4,22 +4,25 @@
 <div class="container">
     <div class="row">
         <div class="col-12 mt-3">
-            <a href="{{ route('categories.create') }}" class="btn btn-success">Inserir Notícia</a>
+            <a href="{{ route('posts.create') }}" class="btn btn-success">Inserir Notícia</a>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-12 mt-3">
-                <table class="col-12 table-dark table" style="max-width:90%">
-                    <tr>
-                        <th>Id</th>
-                        <th>Título</th>
-                        <th>Sumario</th>
-                        <th>Categoria</th>
-                        <th>Ativo</th>
-                        <th>Ações</th>
-                    </tr>
+        <div class="col-12 mt-3" >
+                <table class="col-12 table" id="posts" style="max-width:90%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Título</th>
+                            <th>Sumario</th>
+                            <th>Categoria</th>
+                            <th>Ativo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     @foreach($posts as $post)
                         <tr>
                             <td style="max-width:5vw">{{$post->id}}</td>
@@ -47,7 +50,9 @@
                             </td>
                         </tr>
                     @endforeach
+                    </tbody>
                 </table>
+
         </div>
     </div>
 </div>
