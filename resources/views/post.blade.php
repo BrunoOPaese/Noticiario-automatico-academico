@@ -5,24 +5,27 @@
     <div class="row">
         <div class="col-12 mt-3">
             @include('layouts.errors')
-            @if($category->id)
-                <form action="{{ route('categories.update', ['id' => $category->id]) }}" method="POST">
+            @if($post->id)
+                <form action="{{ route('posts.update', ['id' => $post->id]) }}" method="POST">
                 {{ method_field('PUT') }}
             @else
-                <form action="{{ route('categories.save') }}" method="POST">
+                <form action="{{ route('posts.save') }}" method="POST">
             @endif
                 {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" name="name" id="name" class="form-control" value="{{ $category->name }}">
+                        <label for="title">Título</label>
+                        <input type="text" name="title" id="title" class="form-control" value="{{ $post->title }}">
                     </div>
                     <div class="form-group">
-                        <label for="description">Descrição</label>
-                        <input type="text" class="form-control" id="description" name="description" value="{{ $category->description }}">
+                        <label for="summary">Sumário</label>
+                        <input type="text" class="form-control" id="sumary" name="sumary" value="{{ $post->sumary }}">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="text" id="text" cols="" rows="10" class="form-control">{{ $post->text }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="active">Ativo</label>
-                        @if($category->active)
+                        @if($post->active)
                             <input type="checkbox" checked class="form-control" id="active" name="active">
                         @else
                             <input type="checkbox" class="form-control" id="active" name="active">

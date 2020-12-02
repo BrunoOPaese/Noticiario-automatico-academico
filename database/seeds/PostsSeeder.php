@@ -12,12 +12,14 @@ class PostsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('posts')->insert([
-            'title' => str_random(200),
-            'sumary' => str_random(200),
-            'text' => str_random(400),
-            'category_id' => 1,
-            'active' => true,
-        ]);
+        for($x = 0; $x < 100;$x++){
+            DB::table('posts')->insert([
+                'title' => str_random(200),
+                'sumary' => str_random(200),
+                'text' => str_random(400),
+                'category_id' => 1,
+                'active' => true,
+            ]);            
+        }
     }
 }
