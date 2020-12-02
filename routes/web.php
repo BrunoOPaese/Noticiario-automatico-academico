@@ -12,25 +12,25 @@
 */
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+Route::get('', 'HomeController@index')->name('index');
 Route::get('logout', 'HomeController@logout')->name('logout');
 
 Route::group(['prefix' => 'categories'], function() {
     Route::get('', 'CategoryController@index')->name('categories.index')->middleware('auth');
-    Route::get('novo', 'CategoryController@create')->name('categories.create');
-    Route::post('novo', 'CategoryController@store')->name('categories.save');
-    Route::put('{id}', 'CategoryController@update')->name('categories.update');
-    Route::get('{id}', 'CategoryController@edit')->name('categories.edit');
-    Route::delete('{id}', 'CategoryController@destroy')->name('categories.destroy');
+    Route::get('novo', 'CategoryController@create')->name('categories.create')->middleware('auth');
+    Route::post('novo', 'CategoryController@store')->name('categories.save')->middleware('auth');
+    Route::put('{id}', 'CategoryController@update')->name('categories.update')->middleware('auth');
+    Route::get('{id}', 'CategoryController@edit')->name('categories.edit')->middleware('auth');
+    Route::delete('{id}', 'CategoryController@destroy')->name('categories.destroy')->middleware('auth');
 });
 
 Route::group(['prefix' => 'posts'], function() {
-    Route::get('', 'PostController@index')->name('posts.index');
-    Route::get('novo', 'PostController@create')->name('posts.create');
-    Route::get('{id}', 'PostController@edit')->name('posts.edit');
-    Route::delete('{id}', 'PostController@destroy')->name('posts.destroy');
-    Route::post('novo', 'PostController@store')->name('posts.save');
-    Route::put('{id}', 'PostController@update')->name('posts.update');
+    Route::get('', 'PostController@index')->name('posts.index')->middleware('auth');
+    Route::get('novo', 'PostController@create')->name('posts.create')->middleware('auth');
+    Route::get('{id}', 'PostController@edit')->name('posts.edit')->middleware('auth');
+    Route::delete('{id}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
+    Route::post('novo', 'PostController@store')->name('posts.save')->middleware('auth');
+    Route::put('{id}', 'PostController@update')->name('posts.update')->middleware('auth');
 });
 
 Route::group(['prefix' => 'users'], function () {
@@ -42,5 +42,3 @@ Route::group(['prefix' => 'users'], function () {
     Route::delete('{id}', 'UserController@destroy')->name('users.destroy')->middleware('auth');
 });
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
