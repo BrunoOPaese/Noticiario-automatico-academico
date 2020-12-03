@@ -7,16 +7,7 @@
   <div class="collapse navbar-collapse" id="nvb">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('categories.index') }}">Categorias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('users.index') }}">Usuários</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('logout') }}">Sair</a>
+        <a class="nav-link" href="{{ route('login') }}">Fazer Login</a>
       </li>
     </ul>
   </div>

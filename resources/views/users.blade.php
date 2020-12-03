@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-12">
-            <h1>Banco de Questões - Usuários</h1>
             <a href="{{ route('users.create') }}" class="btn btn-success">Inserir</a>
         </div>
     </div>

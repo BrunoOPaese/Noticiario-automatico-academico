@@ -10,3 +10,12 @@ table {
 table td {
     overflow: hidden;
 }
+
+.post-text {
+    max-width: 90vw !important;
+    overflow-wrap: break-word;
+}
+
+.section .row {
+    text-align: center;
+}

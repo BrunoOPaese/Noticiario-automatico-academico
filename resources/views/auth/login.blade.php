@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('layouts.layout')
+@include('layouts.publicmenu')
 @section('content')
 <div class="container">
     <div class="row">

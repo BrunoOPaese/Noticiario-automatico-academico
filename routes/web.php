@@ -12,7 +12,7 @@
 */
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-Route::get('', 'HomeController@index')->name('index');
+Route::get('/', 'HomeController@index')->name('index');
 Route::get('logout', 'HomeController@logout')->name('logout');
 
 Route::group(['prefix' => 'categories'], function() {
