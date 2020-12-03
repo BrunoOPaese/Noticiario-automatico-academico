@@ -15,6 +15,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Data</th>
                             <th>Título</th>
                             <th>Sumario</th>
                             <th>Categoria</th>
@@ -26,7 +27,8 @@
                     @foreach($posts as $post)
                         <tr>
                             <td style="max-width:5vw">{{$post->id}}</td>
-                            <td style="max-width:20vw">{{$post->title}}</td>
+                            <td style="max-width:5vw">{{ \Carbon\Carbon::parse($post->post_date)->format('d/m/Y') }}</td>
+                            <td style="max-width:15vw">{{$post->title}}</td>
                             <td style="overflow:hidden;max-width:25vw">{{$post->sumary}}</td>
                             <td style="max-width:20vw">
                                 {{$post->category->name}}

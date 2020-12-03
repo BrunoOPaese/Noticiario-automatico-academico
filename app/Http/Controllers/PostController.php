@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post = Post::all();
+        $post = Post::orderBy('post_date', 'desc')->get();
 
         return view('posts', [
             'posts' => $post
@@ -69,6 +69,7 @@ class PostController extends Controller
 
         $post->title = $request->input('title');
         $post->text = $request->input('text');
+        $post->post_date = $request->input('post_date');
         $post->category_id = $request->input('category_id');
         $post->sumary = $request->input('sumary');
         $post->active = $request->input('active') == 'on' ? true : false;
@@ -104,6 +105,7 @@ class PostController extends Controller
 
         $post->title = $request->input('title');
         $post->text = $request->input('text');
+        $post->post_date = $request->input('post_date');
         $post->category_id = $request->input('category_id');
         $post->sumary = $request->input('sumary');
         $post->active = $request->input('active') == 'on' ? true : false;

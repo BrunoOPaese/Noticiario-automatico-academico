@@ -29,6 +29,9 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <input type="date" name="post_date" id="post_date" class="form-control" value="{{ \Carbon\Carbon::parse($post->post_date)->format('Y-m-d') }}">
+                    </div>
+                    <div class="form-group">
                         <textarea name="text" id="text" cols="" rows="10" class="form-control">{{ $post->text }}</textarea>
                     </div>
                     <div class="form-group">
