@@ -11,14 +11,20 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('active', 1)->take(3)->orderBy('post_date', 'DESC')->get();
+        $posts = Post::where('active', 1)->orderBy('post_date', 'DESC')->get();
+        $final = [];
+        $counter = 0;
         foreach($posts as $k => $post) {
-            if($post->category->active != 1) {
-                unset($posts[$k]);
+            if($post->category->active != 1) unset($posts[$k]); 
+            else {
+                $counter ++;
+                $final[] = $posts[$k];
             }
+            if($counter == 3) break;
         }
+        
         return view('home', [
-            'posts' => $posts
+            'posts' => $final
         ]);
     }
 
