@@ -16,7 +16,7 @@ class PostsSeeder extends Seeder
             DB::table('posts')->insert([
                 'title' => str_random(200),
                 'sumary' => str_random(200),
-                'text' => str_random(400),
+                'text' => str_random(10000),
                 'category_id' => 1,
                 'active' => true,
             ]);            

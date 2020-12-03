@@ -4,9 +4,8 @@
 <div class="container ml-10">
     <div class="row">
         <div class="col-12">
-            @foreach($posts as $post)
                 <div class="row">
-                    <div class="post col-12 bg-info">
+                    <div class="post col-12 bg-info" >
                         <div class="row">
                             <div class="col-8 post-title">
                                 <h3>{{ $post->title }}</h3>
@@ -20,13 +19,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
-                                Sumário
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-12 post-text">
-                                <p>{{ $post->sumary }}</p>
+                                <p>{{ $post->text }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -34,12 +28,11 @@
                                 Categoria: {{ $post->category->name }}
                             </div>
                             <div class="col-3">
-                                <a href="{{ route('readpost', ['id' => $post->id]) }}" class="btn btn-success">Ler post completo</a>
+                                <a href="{{ route('index') }}" class="btn btn-success">Voltar</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
         </div>
     </div>
 </div>

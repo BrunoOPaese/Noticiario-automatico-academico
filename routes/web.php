@@ -10,9 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-Route::get('/', 'HomeController@index')->name('index');
+use Symfony\Component\Routing\Loader\Configurator\Traits\RouteTrait;
+
+Route::get('/index', 'HomeController@index')->name('index');
+Route::get('/read/{id}', 'HomeController@post')->name('readpost');
 Route::get('logout', 'HomeController@logout')->name('logout');
 
 Route::group(['prefix' => 'categories'], function() {
